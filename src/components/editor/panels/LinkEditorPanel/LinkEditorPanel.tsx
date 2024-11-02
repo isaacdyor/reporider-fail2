@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/Icon";
 import { Surface } from "@/components/ui/Surface";
-import { Toggle } from "@/components/ui/Toggle";
+import { Switch } from "@/components/ui/switch";
 import { useState, useCallback, useMemo } from "react";
 
 export type LinkEditorPanelProps = {
@@ -78,9 +78,9 @@ export const LinkEditorPanel = ({
       <div className="mt-3">
         <label className="flex cursor-pointer select-none items-center justify-start gap-2 text-sm font-semibold text-neutral-500 dark:text-neutral-400">
           Open in new tab
-          <Toggle
-            active={state.openInNewTab}
-            onChange={state.setOpenInNewTab}
+          <Switch
+            checked={state.openInNewTab}
+            onCheckedChange={(value) => state.setOpenInNewTab(value)}
           />
         </label>
       </div>

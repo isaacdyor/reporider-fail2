@@ -8,7 +8,7 @@ import {
   Link,
   CodeBlock,
 } from "@/components/editor/extensions";
-import { TableOfContentsNode } from "@/components/editor/extensions/TableOfContentsNode";
+import { TableOfContentsNode } from "@/components/editor/extensions/table-of-contents-node";
 
 export const isTableGripSelected = (node: HTMLElement) => {
   let container = node;

@@ -1,8 +1,8 @@
-import { Spinner } from "@/components/ui/Spinner";
 import { useDropZone, useFileUpload, useUploader } from "./hooks";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 import { type ChangeEvent, useCallback } from "react";
 
 export const ImageUploader = ({
@@ -25,7 +25,7 @@ export const ImageUploader = ({
   if (loading) {
     return (
       <div className="flex min-h-[10rem] items-center justify-center rounded-lg bg-opacity-80 p-8">
-        <Spinner className="text-neutral-500" size={1.5} />
+        <Loader2 className="text-muted-foreground animate-spin" />
       </div>
     );
   }

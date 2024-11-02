@@ -1,5 +1,5 @@
 import { type EmojiItem } from "@tiptap-pro/extension-emoji";
-import React, {
+import {
   type ForwardedRef,
   forwardRef,
   useCallback,
@@ -9,9 +9,9 @@ import React, {
 } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Panel } from "@/components/ui/Panel";
-import { type EmojiListProps } from "./types";
+import { Panel } from "@/components/ui/panel";
 import { type SuggestionKeyDownProps } from "@tiptap/suggestion";
+import { type EmojiListProps } from "./types";
 
 const EmojiList = forwardRef(
   (

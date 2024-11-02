@@ -1,12 +1,12 @@
 import { BubbleMenu as BaseBubbleMenu, useEditorState } from "@tiptap/react";
 import React, { useCallback, useRef } from "react";
-import { Instance, sticky } from "tippy.js";
+import { type Instance, sticky } from "tippy.js";
 import { v4 as uuid } from "uuid";
 
 import { Toolbar } from "@/components/ui/Toolbar";
 import { Icon } from "@/components/ui/Icon";
-import { ImageBlockWidth } from "./ImageBlockWidth";
-import { MenuProps } from "@/components/editor/menus/types";
+import { ImageBlockWidth } from "./image-block-width";
+import { type MenuProps } from "@/components/editor/menus/types";
 import { getRenderContainer } from "@/lib/utils";
 
 export const ImageBlockMenu = ({
