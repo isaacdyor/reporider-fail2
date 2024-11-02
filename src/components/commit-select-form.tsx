@@ -30,19 +30,21 @@ interface CommitSelectFormProps {
 
 export function CommitSelectForm({ commits }: CommitSelectFormProps) {
   const router = useRouter();
-  const { mutate: createArticle } = api.articles.create.useMutation({
-    onSuccess: (data) => {
-      router.push(`/editor/${data.id}`);
-    },
-  });
-  const { mutate: getDraft } = api.wordware.getDraft.useMutation({
-    onSuccess: (data) => {
-      createArticle({
-        title: "new blog",
-        content: data,
-      });
-    },
-  });
+  const { mutate: createArticle, isPending: articlePending } =
+    api.articles.create.useMutation({
+      onSuccess: (data) => {
+        router.push(`/editor/${data.id}`);
+      },
+    });
+  const { mutate: getDraft, isPending: draftPending } =
+    api.wordware.getDraft.useMutation({
+      onSuccess: (data) => {
+        createArticle({
+          title: "new blog",
+          content: data,
+        });
+      },
+    });
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -106,7 +108,13 @@ export function CommitSelectForm({ commits }: CommitSelectFormProps) {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button
+          isLoading={draftPending || articlePending}
+          disabled={draftPending || articlePending}
+          type="submit"
+        >
+          Submit
+        </Button>
       </form>
     </Form>
   );

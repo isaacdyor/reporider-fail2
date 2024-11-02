@@ -47,11 +47,6 @@ const data = {
       icon: LayoutDashboard,
     },
     {
-      title: "Repos",
-      url: "/repos",
-      icon: FolderGit2,
-    },
-    {
       title: "Articles",
       url: "/articles",
       icon: Files,

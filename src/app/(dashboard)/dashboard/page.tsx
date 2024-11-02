@@ -1,16 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { api } from "@/trpc/react";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function DashboardPage() {
-  const { mutate } = api.articles.create.useMutation();
-
-  const onClick = () => {
-    mutate({
-      title: "hi",
-      content: "hello",
-    });
-  };
-  return <Button onClick={onClick}>Hi</Button>;
+  return (
+    <Link className={buttonVariants()} href="/repos">
+      Create article
+    </Link>
+  );
 }

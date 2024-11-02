@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import { HocuspocusProvider } from '@hocuspocus/provider'
+import { HocuspocusProvider } from "@hocuspocus/provider";
 
-import { API } from '@/lib/api'
+import { API } from "@/lib/api";
 
 import {
   BlockquoteFigure,
@@ -47,11 +47,11 @@ import {
   TaskItem,
   TaskList,
   UniqueID,
-} from '.'
+} from ".";
 
-import { ImageUpload } from './ImageUpload'
-import { TableOfContentsNode } from './TableOfContentsNode'
-import { isChangeOrigin } from '@tiptap/extension-collaboration'
+import { ImageUpload } from "./image-upload";
+import { TableOfContentsNode } from "./table-of-contents-node";
+import { isChangeOrigin } from "@tiptap/extension-collaboration";
 
 export const ExtensionKit = () => [
   Document,
@@ -67,8 +67,8 @@ export const ExtensionKit = () => [
   }),
   HorizontalRule,
   UniqueID.configure({
-    types: ['paragraph', 'heading', 'blockquote', 'codeBlock', 'table'],
-    filterTransaction: transaction => !isChangeOrigin(transaction),
+    types: ["paragraph", "heading", "blockquote", "codeBlock", "table"],
+    filterTransaction: (transaction) => !isChangeOrigin(transaction),
   }),
   StarterKit.configure({
     document: false,
@@ -82,7 +82,7 @@ export const ExtensionKit = () => [
   Details.configure({
     persist: true,
     HTMLAttributes: {
-      class: 'details',
+      class: "details",
     },
   }),
   DetailsContent,
@@ -104,24 +104,27 @@ export const ExtensionKit = () => [
 
   ImageBlock,
   FileHandler.configure({
-    allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
+    allowedMimeTypes: ["image/png", "image/jpeg", "image/gif", "image/webp"],
     onDrop: (currentEditor, files, pos) => {
-      files.forEach(async file => {
-        const url = await API.uploadImage(file)
+      files.forEach(async (file) => {
+        const url = await API.uploadImage(file);
 
-        currentEditor.chain().setImageBlockAt({ pos, src: url }).focus().run()
-      })
+        currentEditor.chain().setImageBlockAt({ pos, src: url }).focus().run();
+      });
     },
     onPaste: (currentEditor, files) => {
-      files.forEach(async file => {
-        const url = await API.uploadImage(file)
+      files.forEach(async (file) => {
+        const url = await API.uploadImage(file);
 
         return currentEditor
           .chain()
-          .setImageBlockAt({ pos: currentEditor.state.selection.anchor, src: url })
+          .setImageBlockAt({
+            pos: currentEditor.state.selection.anchor,
+            src: url,
+          })
           .focus()
-          .run()
-      })
+          .run();
+      });
     },
   }),
   Emoji.configure({
@@ -130,10 +133,10 @@ export const ExtensionKit = () => [
   }),
   TextAlign.extend({
     addKeyboardShortcuts() {
-      return {}
+      return {};
     },
   }).configure({
-    types: ['heading', 'paragraph'],
+    types: ["heading", "paragraph"],
   }),
   Subscript,
   Superscript,
@@ -145,7 +148,7 @@ export const ExtensionKit = () => [
   Placeholder.configure({
     includeChildren: true,
     showOnlyCurrent: false,
-    placeholder: () => '',
+    placeholder: () => "",
   }),
   SlashCommand,
   Focus,
@@ -153,8 +156,8 @@ export const ExtensionKit = () => [
   BlockquoteFigure,
   Dropcursor.configure({
     width: 2,
-    class: 'ProseMirror-dropcursor border-black',
+    class: "ProseMirror-dropcursor border-black",
   }),
-]
+];
 
-export default ExtensionKit
+export default ExtensionKit;

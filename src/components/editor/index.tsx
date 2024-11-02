@@ -6,12 +6,12 @@ import { LinkMenu } from "@/components/editor/menus";
 
 import { useBlockEditor } from "@/hooks/use-block-editor";
 
-import ImageBlockMenu from "@/components/editor/extensions/ImageBlock/components/ImageBlockMenu";
-import { ColumnsMenu } from "@/components/editor/extensions/MultiColumn/menus";
+import ImageBlockMenu from "@/components/editor/extensions/image-block/components/ImageBlockMenu";
+import { ColumnsMenu } from "@/components/editor/extensions/multi-column/menus";
 import {
   TableColumnMenu,
   TableRowMenu,
-} from "@/components/editor/extensions/Table/menus";
+} from "@/components/editor/extensions/table/menus";
 import { ContentItemMenu } from "./menus/ContentItemMenu";
 import { TextMenu } from "./menus/TextMenu";
 
@@ -28,13 +28,13 @@ export const Editor = ({ content }: { content: string }) => {
     <div className="flex h-full">
       <div className="relative flex h-full flex-1 flex-col overflow-hidden">
         <EditorContent editor={editor} className="flex-1 overflow-y-auto" />
-        <ContentItemMenu editor={editor} />
-        <LinkMenu editor={editor} />
+        {/* <ContentItemMenu editor={editor} />
+        <LinkMenu editor={editor} /> */}
         <TextMenu editor={editor} />
-        <ColumnsMenu editor={editor} />
+        {/* <ColumnsMenu editor={editor} />
         <TableRowMenu editor={editor} />
         <TableColumnMenu editor={editor} />
-        <ImageBlockMenu editor={editor} />
+        <ImageBlockMenu editor={editor} /> */}
       </div>
     </div>
   );
