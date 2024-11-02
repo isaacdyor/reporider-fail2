@@ -6,16 +6,19 @@ import { LinkMenu } from "@/components/editor/menus";
 
 import { useBlockEditor } from "@/hooks/use-block-editor";
 
-import ImageBlockMenu from "@/extensions/ImageBlock/components/ImageBlockMenu";
-import { ColumnsMenu } from "@/extensions/MultiColumn/menus";
-import { TableColumnMenu, TableRowMenu } from "@/extensions/Table/menus";
-import { ContentItemMenu } from "../menus/ContentItemMenu";
-import { TextMenu } from "../menus/TextMenu";
+import ImageBlockMenu from "@/components/editor/extensions/ImageBlock/components/ImageBlockMenu";
+import { ColumnsMenu } from "@/components/editor/extensions/MultiColumn/menus";
+import {
+  TableColumnMenu,
+  TableRowMenu,
+} from "@/components/editor/extensions/Table/menus";
+import { ContentItemMenu } from "./menus/ContentItemMenu";
+import { TextMenu } from "./menus/TextMenu";
 
 import "@/styles/index.css";
 
-export const BlockEditor = () => {
-  const { editor } = useBlockEditor();
+export const Editor = ({ content }: { content: string }) => {
+  const { editor } = useBlockEditor({ content });
 
   if (!editor) {
     return null;
@@ -36,5 +39,3 @@ export const BlockEditor = () => {
     </div>
   );
 };
-
-export default BlockEditor;
