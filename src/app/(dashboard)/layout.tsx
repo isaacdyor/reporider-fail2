@@ -13,10 +13,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = async ({
     <UserProvider user={user}>
       <SidebarProvider>
         <AppSidebar />
-        <SidebarInset>
-          <SidebarBreadcrumbs />
-          <div className="p-4">{children}</div>
-        </SidebarInset>
+        <SidebarInset>{children}</SidebarInset>
       </SidebarProvider>
     </UserProvider>
   );

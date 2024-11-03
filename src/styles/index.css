@@ -7,7 +7,7 @@
 @import "./partials/typography.css";
 
 .ProseMirror {
-  @apply z-0 mx-auto max-w-2xl pl-20 pr-8 caret-black outline-0 lg:max-w-3xl dark:caret-white;
+  @apply z-0 mx-auto max-w-2xl pb-12 pl-20 pr-8 caret-black outline-0 dark:caret-white lg:max-w-3xl;
 
   .selection {
     @apply inline;

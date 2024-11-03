@@ -13,12 +13,16 @@ export const ImageUploader = ({
   const { loading, uploadFile } = useUploader({ onUpload });
   const { handleUploadClick, ref } = useFileUpload();
   const { draggedInside, onDrop, onDragEnter, onDragLeave } = useDropZone({
-    uploader: uploadFile,
+    uploader: (file: File) => {
+      void uploadFile(file);
+    },
   });
 
   const onFileChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) =>
-      e.target.files ? uploadFile(e.target.files[0]) : null,
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) void uploadFile(file);
+    },
     [uploadFile],
   );
 
@@ -55,8 +59,7 @@ export const ImageUploader = ({
           <Button
             disabled={draggedInside}
             onClick={handleUploadClick}
-            variant="primary"
-            buttonSize="small"
+            size="sm"
           >
             <Icon name="Upload" />
             Upload an image
