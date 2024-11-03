@@ -5,7 +5,7 @@ import React, {
 } from "react";
 
 import { cn } from "@/lib/utils";
-import { Surface } from "./Surface";
+import { Surface } from "./surface";
 import { Button, type ButtonProps } from "./button";
 import {
   Tooltip,
@@ -109,11 +109,17 @@ const ToolbarButton = forwardRef<HTMLButtonElement, ToolbarButtonProps>(
       className,
       tooltip,
       tooltipShortcut,
+      active,
       ...rest
     },
     ref,
   ) => {
-    const buttonClass = cn("gap-1 min-w-[2rem] px-2 w-auto", className);
+    const buttonClass = cn(
+      "gap-1 min-w-[2rem] px-2 w-auto text-muted-foreground",
+      active &&
+        "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground",
+      className,
+    );
 
     const content = (
       <Button

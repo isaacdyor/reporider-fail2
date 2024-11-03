@@ -1,3 +1,3 @@
-export * from './Colorpicker'
-export * from './LinkEditorPanel'
-export * from './LinkPreviewPanel'
+export * from "./colorpicker";
+export * from "./link-editor-panel";
+export * from "./link-preview-panel";

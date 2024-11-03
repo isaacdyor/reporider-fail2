@@ -3,11 +3,11 @@ import React, { useCallback, useRef } from "react";
 import { type Instance, sticky } from "tippy.js";
 import { v4 as uuid } from "uuid";
 
-import { Toolbar } from "@/components/ui/Toolbar";
+import { Toolbar } from "@/components/ui/toolbar";
 import { Icon } from "@/components/ui/Icon";
 import { ImageBlockWidth } from "./image-block-width";
 import { type MenuProps } from "@/components/editor/menus/types";
-import { getRenderContainer } from "@/lib/utils";
+import { getRenderContainer } from "@/lib/tiptap/getRenderContainer";
 
 export const ImageBlockMenu = ({
   editor,
@@ -19,7 +19,7 @@ export const ImageBlockMenu = ({
   const getReferenceClientRect = useCallback(() => {
     const renderContainer = getRenderContainer(editor, "node-imageBlock");
     const rect =
-      renderContainer?.getBoundingClientRect() ||
+      renderContainer?.getBoundingClientRect() ??
       new DOMRect(-1000, -1000, 0, 0);
 
     return rect;

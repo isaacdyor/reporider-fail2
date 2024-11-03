@@ -1,5 +1,6 @@
-import { api } from "@/trpc/server";
 import "@/styles/index.css";
+
+import { api } from "@/trpc/server";
 
 interface PageProps {
   params: Promise<{ id: string }>;

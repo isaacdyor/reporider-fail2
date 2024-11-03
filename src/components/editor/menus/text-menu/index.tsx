@@ -1,17 +1,17 @@
 import { Icon } from "@/components/ui/Icon";
-import { Toolbar } from "@/components/ui/Toolbar";
-import { useTextmenuCommands } from "./hooks/useTextmenuCommands";
-import { useTextmenuStates } from "./hooks/useTextmenuStates";
+import { Toolbar } from "@/components/ui/toolbar";
+import { useTextmenuCommands } from "./hooks/use-text-menu-commands";
+import { useTextmenuStates } from "./hooks/use-text-menu-statuses";
 import { BubbleMenu, type Editor } from "@tiptap/react";
 import { memo } from "react";
 import * as Popover from "@radix-ui/react-popover";
-import { Surface } from "@/components/ui/Surface";
+import { Surface } from "@/components/ui/surface";
 import { ColorPicker } from "@/components/editor/panels";
-import { FontFamilyPicker } from "./components/FontFamilyPicker";
-import { FontSizePicker } from "./components/FontSizePicker";
-import { useTextmenuContentTypes } from "./hooks/useTextmenuContentTypes";
-import { ContentTypePicker } from "./components/ContentTypePicker";
-import { EditLinkPopover } from "./components/EditLinkPopover";
+import { FontFamilyPicker } from "./components/font-family-picker";
+import { FontSizePicker } from "./components/font-size-picker";
+import { useTextmenuContentTypes } from "./hooks/use-text-menu-content-types";
+import { ContentTypePicker } from "./components/content-type-picker";
+import { EditLinkPopover } from "./components/edit-link-popover";
 
 // We memorize the button so each button is not rerendered
 // on every editor state change

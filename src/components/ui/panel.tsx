@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
-import { Surface } from "./Surface";
+import { Surface } from "./surface";
 
 export type PanelProps = {
   spacing?: "medium" | "small";

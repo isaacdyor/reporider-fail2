@@ -13,8 +13,8 @@ import {
   TableColumnMenu,
   TableRowMenu,
 } from "@/components/editor/extensions/table/menus";
-import { ContentItemMenu } from "./menus/ContentItemMenu";
-import { TextMenu } from "./menus/TextMenu";
+import { ContentItemMenu } from "./menus/content-menu-item";
+import { TextMenu } from "./menus/text-menu";
 
 import "@/styles/index.css";
 
