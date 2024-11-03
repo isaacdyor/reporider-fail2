@@ -1,4 +1,4 @@
-import { Icon } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/icon";
 import { type icons } from "lucide-react";
 import { useMemo } from "react";
 import * as Dropdown from "@radix-ui/react-dropdown-menu";

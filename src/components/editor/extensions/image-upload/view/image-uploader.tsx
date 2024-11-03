@@ -1,6 +1,6 @@
 import { useDropZone, useFileUpload, useUploader } from "./hooks";
 import { Button } from "@/components/ui/button";
-import { Icon } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/icon";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { type ChangeEvent, useCallback } from "react";
@@ -29,7 +29,7 @@ export const ImageUploader = ({
   if (loading) {
     return (
       <div className="flex min-h-[10rem] items-center justify-center rounded-lg bg-opacity-80 p-8">
-        <Loader2 className="text-muted-foreground animate-spin" />
+        <Loader2 className="animate-spin text-muted-foreground" />
       </div>
     );
   }

@@ -4,7 +4,7 @@ import { type Instance, sticky } from "tippy.js";
 import { v4 as uuid } from "uuid";
 
 import { Toolbar } from "@/components/ui/toolbar";
-import { Icon } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/icon";
 import { ImageBlockWidth } from "./image-block-width";
 import { type MenuProps } from "@/components/editor/menus/types";
 import { getRenderContainer } from "@/lib/tiptap/getRenderContainer";

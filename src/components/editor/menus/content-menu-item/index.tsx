@@ -1,4 +1,4 @@
-import { Icon } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/icon";
 import { Toolbar } from "@/components/ui/toolbar";
 import DragHandle from "@tiptap-pro/extension-drag-handle-react";
 import { type Editor } from "@tiptap/react";

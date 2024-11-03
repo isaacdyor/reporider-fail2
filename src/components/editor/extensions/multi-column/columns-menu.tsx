@@ -7,7 +7,7 @@ import { type MenuProps } from "@/components/editor/menus/types";
 import { getRenderContainer } from "@/lib/tiptap/getRenderContainer";
 import { Toolbar } from "@/components/ui/toolbar";
 import { ColumnLayout } from "./columns";
-import { Icon } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/icon";
 
 export const ColumnsMenu = ({ editor, appendTo }: MenuProps) => {
   const getReferenceClientRect = useCallback(() => {

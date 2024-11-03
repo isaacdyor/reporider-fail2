@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Icon } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/icon";
 import { Surface } from "@/components/ui/surface";
 import { Switch } from "@/components/ui/switch";
 import { useState, useCallback, useMemo } from "react";

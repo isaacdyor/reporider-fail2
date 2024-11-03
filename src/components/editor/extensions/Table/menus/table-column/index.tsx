@@ -4,7 +4,7 @@ import * as PopoverMenu from "@/components/ui/popover-menu";
 
 import { Toolbar } from "@/components/ui/toolbar";
 import { isColumnGripSelected } from "./utils";
-import { Icon } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/icon";
 import {
   type MenuProps,
   type ShouldShowProps,

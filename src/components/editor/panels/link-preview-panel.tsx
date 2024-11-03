@@ -1,4 +1,4 @@
-import { Icon } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/icon";
 import { Surface } from "@/components/ui/surface";
 import { Toolbar } from "@/components/ui/toolbar";
 import {
