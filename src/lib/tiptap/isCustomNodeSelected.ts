@@ -17,14 +17,8 @@ export const isTableGripSelected = (node: HTMLElement) => {
     container = container.parentElement!;
   }
 
-  const gripColumn =
-    container &&
-    container.querySelector &&
-    container.querySelector("a.grip-column.selected");
-  const gripRow =
-    container &&
-    container.querySelector &&
-    container.querySelector("a.grip-row.selected");
+  const gripColumn = container.querySelector("a.grip-column.selected");
+  const gripRow = container.querySelector("a.grip-row.selected");
 
   if (gripColumn || gripRow) {
     return true;

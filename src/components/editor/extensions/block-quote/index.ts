@@ -61,7 +61,7 @@ export const BlockquoteFigure = Figure.extend({
                   type: "quote",
                   content: (selectionContent.content.toJSON() as Record<
                     string,
-                    any
+                    unknown
                   >[]) || [
                     {
                       type: "paragraph",

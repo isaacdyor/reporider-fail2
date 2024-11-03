@@ -1,7 +1,5 @@
 "use client";
 
-import { HocuspocusProvider } from "@hocuspocus/provider";
-
 import { API } from "@/lib/api";
 
 import {
@@ -9,6 +7,8 @@ import {
   CharacterCount,
   CodeBlock,
   Color,
+  Column,
+  Columns,
   Details,
   DetailsContent,
   DetailsSummary,
@@ -32,26 +32,23 @@ import {
   Subscript,
   Superscript,
   Table,
-  TableOfContents,
   TableCell,
   TableHeader,
+  TableOfContents,
   TableRow,
+  TaskItem,
+  TaskList,
   TextAlign,
   TextStyle,
   TrailingNode,
   Typography,
   Underline,
-  emojiSuggestion,
-  Columns,
-  Column,
-  TaskItem,
-  TaskList,
   UniqueID,
+  emojiSuggestion,
 } from ".";
 
-import { ImageUpload } from "./image-upload";
-import { TableOfContentsNode } from "./table-of-contents-node";
 import { isChangeOrigin } from "@tiptap/extension-collaboration";
+import { TableOfContentsNode } from "./table-of-contents-node";
 
 export const ExtensionKit = () => [
   Document,
@@ -106,25 +103,31 @@ export const ExtensionKit = () => [
   FileHandler.configure({
     allowedMimeTypes: ["image/png", "image/jpeg", "image/gif", "image/webp"],
     onDrop: (currentEditor, files, pos) => {
-      files.forEach(async (file) => {
-        const url = await API.uploadImage(file);
-
-        currentEditor.chain().setImageBlockAt({ pos, src: url }).focus().run();
-      });
+      void Promise.all(
+        Array.from(files).map(async (file) => {
+          const url = await API.uploadImage(file);
+          currentEditor
+            .chain()
+            .setImageBlockAt({ pos, src: url })
+            .focus()
+            .run();
+        }),
+      );
     },
     onPaste: (currentEditor, files) => {
-      files.forEach(async (file) => {
-        const url = await API.uploadImage(file);
-
-        return currentEditor
-          .chain()
-          .setImageBlockAt({
-            pos: currentEditor.state.selection.anchor,
-            src: url,
-          })
-          .focus()
-          .run();
-      });
+      void Promise.all(
+        Array.from(files).map(async (file) => {
+          const url = await API.uploadImage(file);
+          currentEditor
+            .chain()
+            .setImageBlockAt({
+              pos: currentEditor.state.selection.anchor,
+              src: url,
+            })
+            .focus()
+            .run();
+        }),
+      );
     },
   }),
   Emoji.configure({

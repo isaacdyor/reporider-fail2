@@ -20,8 +20,10 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
 
   const selectItem = useCallback(
     (groupIndex: number, commandIndex: number) => {
-      const command = props.items[groupIndex].commands[commandIndex];
-      props.command(command);
+      const command = props.items[groupIndex]?.commands[commandIndex];
+      if (command) {
+        props.command(command);
+      }
     },
     [props],
   );
@@ -33,12 +35,12 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
           return false;
         }
 
-        const commands = props.items[selectedGroupIndex].commands;
+        const commands = props.items[selectedGroupIndex]?.commands;
 
         let newCommandIndex = selectedCommandIndex + 1;
         let newGroupIndex = selectedGroupIndex;
 
-        if (commands.length - 1 < newCommandIndex) {
+        if ((commands?.length ?? 1) - 1 < newCommandIndex) {
           newCommandIndex = 0;
           newGroupIndex = selectedGroupIndex + 1;
         }
@@ -64,12 +66,13 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
         if (newCommandIndex < 0) {
           newGroupIndex = selectedGroupIndex - 1;
           newCommandIndex =
-            props.items[newGroupIndex]?.commands.length - 1 || 0;
+            (props.items[newGroupIndex]?.commands ?? []).length - 1;
         }
 
         if (newGroupIndex < 0) {
           newGroupIndex = props.items.length - 1;
-          newCommandIndex = props.items[newGroupIndex].commands.length - 1;
+          newCommandIndex =
+            (props.items[newGroupIndex]?.commands ?? []).length - 1;
         }
 
         setSelectedCommandIndex(newCommandIndex);

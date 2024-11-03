@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { type Session, type User } from "@supabase/supabase-js";
+import { type ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 
 export async function createClient() {
@@ -16,7 +17,7 @@ export async function createClient() {
         setAll(cookiesToSet) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options),
+              cookieStore.set(name, value, options as Partial<ResponseCookie>),
             );
           } catch {
             // The `setAll` method was called from a Server Component.

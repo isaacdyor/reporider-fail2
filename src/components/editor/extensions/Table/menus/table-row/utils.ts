@@ -34,10 +34,7 @@ export const isRowGripSelected = ({
     container = container.parentElement!;
   }
 
-  const gripRow =
-    container &&
-    container.querySelector &&
-    container.querySelector("a.grip-row.selected");
+  const gripRow = container.querySelector("a.grip-row.selected");
 
   return !!gripRow;
 };

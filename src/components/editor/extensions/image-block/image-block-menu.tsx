@@ -72,7 +72,9 @@ export const ImageBlockMenu = ({
         isImageLeft: ctx.editor.isActive("imageBlock", { align: "left" }),
         isImageCenter: ctx.editor.isActive("imageBlock", { align: "center" }),
         isImageRight: ctx.editor.isActive("imageBlock", { align: "right" }),
-        width: parseInt(ctx.editor.getAttributes("imageBlock")?.width || 0),
+        width: parseInt(
+          (ctx.editor.getAttributes("imageBlock")?.width as string) || "0",
+        ),
       };
     },
   });
@@ -93,7 +95,7 @@ export const ImageBlockMenu = ({
           tippyInstance.current = instance;
         },
         appendTo: () => {
-          return appendTo?.current;
+          return appendTo?.current as Element;
         },
         plugins: [sticky],
         sticky: "popper",

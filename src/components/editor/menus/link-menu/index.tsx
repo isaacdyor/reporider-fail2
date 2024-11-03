@@ -7,11 +7,17 @@ import { LinkEditorPanel } from "@/components/editor/panels";
 
 export const LinkMenu = ({ editor, appendTo }: MenuProps): JSX.Element => {
   const [showEdit, setShowEdit] = useState(false);
-  const { link, target } = useEditorState({
+  const { link, target } = useEditorState<{
+    link: string | null;
+    target: string | null;
+  }>({
     editor,
     selector: (ctx) => {
-      const attrs = ctx.editor.getAttributes("link");
-      return { link: attrs.href, target: attrs.target };
+      const attrs = ctx.editor.getAttributes("link") as {
+        href?: string;
+        target?: string;
+      };
+      return { link: attrs.href ?? null, target: attrs.target ?? null };
     },
   });
 
@@ -54,26 +60,27 @@ export const LinkMenu = ({ editor, appendTo }: MenuProps): JSX.Element => {
           modifiers: [{ name: "flip", enabled: false }],
         },
         appendTo: () => {
-          return appendTo?.current;
+          return appendTo?.current as HTMLElement;
         },
         onHidden: () => {
           setShowEdit(false);
         },
       }}
     >
-      {showEdit ? (
-        <LinkEditorPanel
-          initialUrl={link}
-          initialOpenInNewTab={target === "_blank"}
-          onSetLink={onSetLink}
-        />
-      ) : (
-        <LinkPreviewPanel
-          url={link}
-          onClear={onUnsetLink}
-          onEdit={handleEdit}
-        />
-      )}
+      {link &&
+        (showEdit ? (
+          <LinkEditorPanel
+            initialUrl={link}
+            initialOpenInNewTab={target === "_blank"}
+            onSetLink={onSetLink}
+          />
+        ) : (
+          <LinkPreviewPanel
+            url={link}
+            onClear={onUnsetLink}
+            onEdit={handleEdit}
+          />
+        ))}
     </BaseBubbleMenu>
   );
 };

@@ -6,13 +6,14 @@ import Suggestion, {
 } from "@tiptap/suggestion";
 import { PluginKey } from "@tiptap/pm/state";
 import tippy from "tippy.js";
+import { type Instance as TippyInstance } from "tippy.js";
 
 import { GROUPS } from "./groups";
 import { MenuList } from "./menu-list";
 
 const extensionName = "slashCommand";
 
-let popup: any;
+let popup: TippyInstance[];
 
 export const SlashCommand = Extension.create({
   name: extensionName,
@@ -66,7 +67,13 @@ export const SlashCommand = Extension.create({
             isValidAfterContent
           );
         },
-        command: ({ editor, props }: { editor: Editor; props: any }) => {
+        command: ({
+          editor,
+          props,
+        }: {
+          editor: Editor;
+          props: { action: (editor: Editor) => void };
+        }) => {
           const { view, state } = editor;
           const { $head, $from } = view.state.selection;
 
@@ -131,7 +138,7 @@ export const SlashCommand = Extension.create({
           return withEnabledSettings;
         },
         render: () => {
-          let component: any;
+          let component: ReactRenderer;
 
           let scrollHandler: (() => void) | null = null;
 
@@ -144,28 +151,36 @@ export const SlashCommand = Extension.create({
 
               const { view } = props.editor;
 
-              const editorNode = view.dom;
-
               const getReferenceClientRect = () => {
                 if (!props.clientRect) {
-                  return props.editor.storage[extensionName].rect;
+                  return (
+                    props.editor.storage[extensionName] as {
+                      rect: DOMRect;
+                    }
+                  ).rect;
                 }
 
                 const rect = props.clientRect();
 
                 if (!rect) {
-                  return props.editor.storage[extensionName].rect;
+                  return (
+                    props.editor.storage[extensionName] as {
+                      rect: DOMRect;
+                    }
+                  ).rect;
                 }
 
                 let yPos = rect.y;
 
                 if (
-                  rect.top + component.element.offsetHeight + 40 >
+                  rect.top +
+                    (component?.element as HTMLDivElement).offsetHeight +
+                    40 >
                   window.innerHeight
                 ) {
                   const diff =
                     rect.top +
-                    component.element.offsetHeight -
+                    (component?.element as HTMLDivElement).offsetHeight -
                     window.innerHeight +
                     40;
                   yPos = rect.y - diff;
@@ -175,20 +190,20 @@ export const SlashCommand = Extension.create({
               };
 
               scrollHandler = () => {
-                popup?.[0].setProps({
+                popup?.[0]?.setProps({
                   getReferenceClientRect,
                 });
               };
 
               view.dom.parentElement?.addEventListener("scroll", scrollHandler);
 
-              popup?.[0].setProps({
+              popup?.[0]?.setProps({
                 getReferenceClientRect,
                 appendTo: () => document.body,
                 content: component.element,
               });
 
-              popup?.[0].show();
+              popup?.[0]?.show();
             },
 
             onUpdate(props: SuggestionProps) {
@@ -196,28 +211,36 @@ export const SlashCommand = Extension.create({
 
               const { view } = props.editor;
 
-              const editorNode = view.dom;
-
               const getReferenceClientRect = () => {
                 if (!props.clientRect) {
-                  return props.editor.storage[extensionName].rect;
+                  return (
+                    props.editor.storage[extensionName] as {
+                      rect: DOMRect;
+                    }
+                  ).rect;
                 }
 
                 const rect = props.clientRect();
 
                 if (!rect) {
-                  return props.editor.storage[extensionName].rect;
+                  return (
+                    props.editor.storage[extensionName] as {
+                      rect: DOMRect;
+                    }
+                  ).rect;
                 }
 
                 let yPos = rect.y;
 
                 if (
-                  rect.top + component.element.offsetHeight + 40 >
+                  rect.top +
+                    (component?.element as HTMLDivElement).offsetHeight +
+                    40 >
                   window.innerHeight
                 ) {
                   const diff =
                     rect.top +
-                    component.element.offsetHeight -
+                    (component?.element as HTMLDivElement).offsetHeight -
                     window.innerHeight +
                     40;
                   yPos = rect.y - diff;
@@ -227,45 +250,45 @@ export const SlashCommand = Extension.create({
               };
 
               const scrollHandler = () => {
-                popup?.[0].setProps({
+                popup?.[0]?.setProps({
                   getReferenceClientRect,
                 });
               };
 
               view.dom.parentElement?.addEventListener("scroll", scrollHandler);
 
-              // eslint-disable-next-line no-param-reassign
-              props.editor.storage[extensionName].rect = props.clientRect
+              (
+                props.editor.storage[extensionName] as {
+                  rect: DOMRect;
+                }
+              ).rect = props.clientRect
                 ? getReferenceClientRect()
-                : {
-                    width: 0,
-                    height: 0,
-                    left: 0,
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                  };
-              popup?.[0].setProps({
+                : new DOMRect(0, 0, 0, 0);
+              popup?.[0]?.setProps({
                 getReferenceClientRect,
               });
             },
 
             onKeyDown(props: SuggestionKeyDownProps) {
               if (props.event.key === "Escape") {
-                popup?.[0].hide();
+                popup?.[0]?.hide();
 
                 return true;
               }
 
-              if (!popup?.[0].state.isShown) {
-                popup?.[0].show();
+              if (!popup?.[0]?.state.isShown) {
+                popup?.[0]?.show();
               }
 
-              return component.ref?.onKeyDown(props);
+              return (
+                component.ref as {
+                  onKeyDown: (props: SuggestionKeyDownProps) => boolean;
+                }
+              )?.onKeyDown(props);
             },
 
             onExit(props) {
-              popup?.[0].hide();
+              popup?.[0]?.hide();
               if (scrollHandler) {
                 const { view } = props.editor;
                 view.dom.parentElement?.removeEventListener(

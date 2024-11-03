@@ -1,3 +1,4 @@
+import { DashboardContentLayout } from "@/components/dashboard-content-layout";
 import { RepoCard } from "@/components/repo-card";
 import { getOctokit } from "@/lib/github";
 
@@ -9,10 +10,12 @@ export default async function DashboardPage() {
   });
 
   return (
-    <div className="flex flex-col gap-4 p-8">
-      {repos.map((repo) => (
-        <RepoCard key={repo.id} repo={repo} />
-      ))}
-    </div>
+    <DashboardContentLayout>
+      <div className="flex flex-col gap-4 p-8">
+        {repos.map((repo) => (
+          <RepoCard key={repo.id} repo={repo} />
+        ))}
+      </div>
+    </DashboardContentLayout>
   );
 }

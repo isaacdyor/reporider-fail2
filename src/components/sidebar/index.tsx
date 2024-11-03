@@ -1,14 +1,13 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import {
   Command,
   Files,
-  FolderGit2,
   GalleryVerticalEnd,
   LayoutDashboard,
   Settings,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 import { NavMain } from "@/components/sidebar/nav-main";
 import { NavUser } from "@/components/sidebar/nav-user";

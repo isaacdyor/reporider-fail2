@@ -33,28 +33,28 @@ export const ImageBlock = Image.extend({
         default: "",
         parseHTML: (element) => element.getAttribute("src"),
         renderHTML: (attributes) => ({
-          src: attributes.src,
+          src: attributes.src as string,
         }),
       },
       width: {
         default: "100%",
         parseHTML: (element) => element.getAttribute("data-width"),
         renderHTML: (attributes) => ({
-          "data-width": attributes.width,
+          "data-width": attributes.width as string,
         }),
       },
       align: {
         default: "center",
         parseHTML: (element) => element.getAttribute("data-align"),
         renderHTML: (attributes) => ({
-          "data-align": attributes.align,
+          "data-align": attributes.align as string,
         }),
       },
       alt: {
         default: undefined,
         parseHTML: (element) => element.getAttribute("alt"),
         renderHTML: (attributes) => ({
-          alt: attributes.alt,
+          alt: attributes.alt as string,
         }),
       },
     };

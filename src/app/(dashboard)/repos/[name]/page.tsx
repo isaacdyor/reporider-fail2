@@ -1,4 +1,5 @@
 import { CommitSelectForm } from "@/components/commit-select-form";
+import { DashboardContentLayout } from "@/components/dashboard-content-layout";
 import { getOctokit } from "@/lib/github";
 import { getUser } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
@@ -42,9 +43,11 @@ export default async function RepoPage({ params }: PageProps) {
   );
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold">{repo.name}</h1>
-      <CommitSelectForm commits={commitsWithPatches} />
-    </div>
+    <DashboardContentLayout>
+      <div>
+        <h1 className="text-2xl font-bold">{repo.name}</h1>
+        <CommitSelectForm commits={commitsWithPatches} />
+      </div>
+    </DashboardContentLayout>
   );
 }

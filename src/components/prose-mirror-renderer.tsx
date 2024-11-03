@@ -2,15 +2,19 @@
 
 import { useEditor, EditorContent } from "@tiptap/react";
 import { ExtensionKit } from "@/components/editor/extensions/extension-kit";
-import { type AnyExtension } from "@tiptap/core";
+import { type JSONContent, type AnyExtension } from "@tiptap/core";
 
 interface ProseMirrorRendererProps {
-  document: string | object | null;
+  content: string;
 }
 
-export function ProseMirrorRenderer({ document }: ProseMirrorRendererProps) {
-  const parsedContent =
-    typeof document === "string" ? JSON.parse(document) : document;
+export function ProseMirrorRenderer({ content }: ProseMirrorRendererProps) {
+  let parsedContent: JSONContent | string = content;
+  try {
+    parsedContent = JSON.parse(content) as JSONContent;
+  } catch {
+    parsedContent = content;
+  }
 
   const editor = useEditor(
     {

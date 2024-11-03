@@ -21,13 +21,16 @@ export const useTextmenuStates = (editor: Editor) => {
         isAlignCenter: ctx.editor.isActive({ textAlign: "center" }),
         isAlignRight: ctx.editor.isActive({ textAlign: "right" }),
         isAlignJustify: ctx.editor.isActive({ textAlign: "justify" }),
-        currentColor: ctx.editor.getAttributes("textStyle")?.color || undefined,
+        currentColor:
+          (ctx.editor.getAttributes("textStyle")?.color as string) || undefined,
         currentHighlight:
-          ctx.editor.getAttributes("highlight")?.color || undefined,
+          (ctx.editor.getAttributes("highlight")?.color as string) || undefined,
         currentFont:
-          ctx.editor.getAttributes("textStyle")?.fontFamily || undefined,
+          (ctx.editor.getAttributes("textStyle")?.fontFamily as string) ||
+          undefined,
         currentSize:
-          ctx.editor.getAttributes("textStyle")?.fontSize || undefined,
+          (ctx.editor.getAttributes("textStyle")?.fontSize as string) ||
+          undefined,
       };
     },
   });
@@ -38,8 +41,8 @@ export const useTextmenuStates = (editor: Editor) => {
         return false;
       }
 
-      const domAtPos = view.domAtPos(from || 0).node as HTMLElement;
-      const nodeDOM = view.nodeDOM(from || 0) as HTMLElement;
+      const domAtPos = view.domAtPos(from ?? 0).node as HTMLElement;
+      const nodeDOM = view.nodeDOM(from ?? 0) as HTMLElement;
       const node = nodeDOM || domAtPos;
 
       if (isCustomNodeSelected(editor, node)) {

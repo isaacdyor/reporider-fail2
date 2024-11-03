@@ -22,7 +22,7 @@ export function GitHubSigninButton() {
       key={"github"}
       variant="outline"
       size="lg"
-      className="mb-2 w-full font-normal text-muted-foreground"
+      className="mb-2 flex w-full items-center gap-2 font-normal text-muted-foreground"
       onClick={handleLogin}
     >
       <GitHubLogoIcon className="h-5 w-5" />

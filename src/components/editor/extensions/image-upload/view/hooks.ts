@@ -5,7 +5,6 @@ import {
   useRef,
   useState,
 } from "react";
-import toast from "react-hot-toast";
 import { API } from "@/lib/api";
 
 export const useUploader = ({
@@ -22,10 +21,8 @@ export const useUploader = ({
         const url = await API.uploadImage(file);
 
         onUpload(url);
-      } catch (errPayload: any) {
-        const error =
-          errPayload?.response?.data?.error || "Something went wrong";
-        toast.error(error);
+      } catch (errPayload) {
+        console.error(errPayload);
       }
       setLoading(false);
     },

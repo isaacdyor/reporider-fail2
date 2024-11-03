@@ -10,7 +10,12 @@ declare global {
 }
 
 export const useBlockEditor = ({ content }: { content: string }) => {
-  const parsedContent = content ? (JSON.parse(content) as JSONContent) : null;
+  let parsedContent: JSONContent | string = content;
+  try {
+    parsedContent = JSON.parse(content) as JSONContent;
+  } catch {
+    parsedContent = content;
+  }
   const editor = useEditor(
     {
       immediatelyRender: false,
