@@ -1,4 +1,4 @@
-import type { AnyExtension, Editor } from "@tiptap/core";
+import type { AnyExtension, Editor, JSONContent } from "@tiptap/core";
 import { useEditor } from "@tiptap/react";
 
 import { ExtensionKit } from "@/components/editor/extensions/extension-kit";
@@ -10,12 +10,13 @@ declare global {
 }
 
 export const useBlockEditor = ({ content }: { content: string }) => {
+  const parsedContent = content ? (JSON.parse(content) as JSONContent) : null;
   const editor = useEditor(
     {
       immediatelyRender: false,
       shouldRerenderOnTransaction: false,
       autofocus: true,
-      content,
+      content: parsedContent,
       extensions: [...ExtensionKit()].filter(
         (e): e is AnyExtension => e !== undefined,
       ),
